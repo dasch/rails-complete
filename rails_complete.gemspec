@@ -5,24 +5,25 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails_complete}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Schierbeck"]
   s.date = %q{2010-09-19}
-  s.default_executable = %q{rails-complete.rb}
+  s.default_executable = %q{rails-complete}
   s.description = %q{Tab completion for the rails command-line tool.}
   s.email = %q{daniel.schierbeck@gmail.com}
-  s.executables = ["rails-complete.rb"]
+  s.executables = ["rails-complete"]
   s.extra_rdoc_files = [
     "README.mkd"
   ]
   s.files = [
-    "MIT-LICENSE",
+    ".gitignore",
+     "MIT-LICENSE",
      "README.mkd",
      "Rakefile",
      "VERSION",
-     "bin/rails-complete.rb",
+     "bin/rails-complete",
      "lib/rails_complete.rb",
      "rails_complete.gemspec",
      "test/test_completions.rb"
