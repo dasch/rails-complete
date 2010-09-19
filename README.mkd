@@ -4,9 +4,18 @@ Rails Complete
 Adds auto-completion to the `rails` command.
 
 
+Install
+-------
+
+First, you need to run `gem install rails_complete`. Then just add the following
+line to your `.bashrc`
+
+    complete -C rails-complete -o default rails
+
+
 License
 -------
 
-Copyright (c) 2010 Daniel Schierbeck, released under the MIT license.
+Copyright (c) 2010 Daniel Schierbeck.
 
-See MIT-LICENSE for details.
+Released under the MIT license. See MIT-LICENSE for details.
