@@ -3,7 +3,7 @@ module RailsComplete
   class << self
 
     COMMANDS = %w(server generate destroy plugin benchmarker profiler
-                  console dbconsole application runner)
+                  console dbconsole application runner new)
 
     def complete(string)
       string = string.chomp
