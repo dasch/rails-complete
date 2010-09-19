@@ -1,0 +1,12 @@
+Rails Complete
+==============
+
+Adds auto-completion to the `rails` command.
+
+
+License
+-------
+
+Copyright (c) 2010 Daniel Schierbeck, released under the MIT license.
+
+See MIT-LICENSE for details.
