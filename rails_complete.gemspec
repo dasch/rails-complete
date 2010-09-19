@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "VERSION",
      "bin/rails-complete.rb",
      "lib/rails_complete.rb",
+     "rails_complete.gemspec",
      "test/test_completions.rb"
   ]
   s.homepage = %q{http://github.com/dasch/rails-complete}
