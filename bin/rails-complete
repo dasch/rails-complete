@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 
+begin
+  require 'rubygems'
+rescue LoadError
+  # Not using RubyGems.
+end
+
 comp_line = ENV["COMP_LINE"]
 exit -1 if comp_line.nil?
 
