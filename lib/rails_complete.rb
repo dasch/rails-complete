@@ -1,5 +1,5 @@
 
-module Rails
+module RailsComplete
   class << self
 
     COMMANDS = %w(server generate destroy plugin benchmarker profiler
