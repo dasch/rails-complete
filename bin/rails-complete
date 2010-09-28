@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 
-begin
-  require 'rubygems'
-rescue LoadError
-  # Not using RubyGems.
+COMMANDS = %w(server generate destroy plugin benchmarker profiler
+              console dbconsole application runner new)
+
+def complete(string)
+  string = string.chomp
+
+  COMMANDS.select {|cmd| cmd[0, string.length] == string }
 end
 
 comp_line = ENV["COMP_LINE"]
@@ -11,8 +14,6 @@ exit -1 if comp_line.nil?
 
 parts = comp_line.scan(/\w+/)
 
-require 'rails_complete'
-
 prefix = parts[1] || ""
 
-puts RailsComplete.complete(prefix)
+puts complete(prefix)
