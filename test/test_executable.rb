@@ -16,6 +16,10 @@ class TestExecutable < Test::Unit::TestCase
     assert_equal COMMANDS.sort, complete("").sort
   end
 
+  def test_should_not_list_command_if_prefix_already_given
+    assert_equal [], complete('new')
+  end
+
   protected
 
   def complete(prefix)

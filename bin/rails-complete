@@ -6,6 +6,7 @@ COMMANDS = %w(server generate destroy plugin benchmarker profiler
 def complete(string)
   string = string.chomp
 
+  return '' if COMMANDS.include?(string)
   COMMANDS.select {|cmd| cmd[0, string.length] == string }
 end
 
