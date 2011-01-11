@@ -1,20 +1,37 @@
 #!/usr/bin/env ruby
 
-COMMANDS = %w(server generate destroy plugin benchmarker profiler
-              console dbconsole application runner new --version -v --help -h)
+COMMANDS = {'server' => %w(),
+            'generate' => %w(),
+            'destroy' => %w(),
+            'plugin' => %w(),
+            'benchmarker' => %w(),
+            'profiler' => %w(),
+            'console' => %w(),
+            'dbconsole' => %w(),
+            'application' => %w(),
+            'runner' => %w(),
+            'new' => %w(--skip-prototype -J --skip-test-unit -T --dev -m --template --skip-git -G --builder -b --edge --skip-gemfile --database -d --quiet -q --pretend -p --skip -s --force -f),
+            '--version' => nil,
+            '-v' => nil,
+            '--help' => nil,
+            '-h' => nil}
 
-def complete(string)
-  string = string.chomp
+def complete(parts)
+  if parts.length > 0 && COMMANDS.key?(parts.first)
+    find_commands(COMMANDS[parts.first], parts.last)
+  else
+    find_commands(COMMANDS.keys, parts.first || '')
+  end
+end
 
-  return '' if COMMANDS.include?(string)
-  COMMANDS.select {|cmd| cmd[0, string.length] == string }
+def find_commands(commands, pattern)
+  commands.select {|cmd| cmd[0, pattern.length] == pattern }
 end
 
 comp_line = ENV["COMP_LINE"]
 exit -1 if comp_line.nil?
 
 parts = comp_line.split(' ')
+parts.shift
 
-prefix = parts[1] || ""
-
-puts complete(prefix)
+puts complete(parts)

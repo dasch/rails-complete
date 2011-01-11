@@ -9,7 +9,7 @@ COMMANDS = %w(server generate destroy plugin benchmarker profiler
 class TestExecutable < Test::Unit::TestCase
   def test_should_complete_commands
     assert_equal %w(server), complete("ser")
-    assert_equal %w(plugin profiler), complete("p")
+    assert_equal %w(plugin profiler), complete("p").sort
   end
 
   def test_should_complete_flags
@@ -22,6 +22,10 @@ class TestExecutable < Test::Unit::TestCase
 
   def test_should_not_list_command_if_prefix_already_given
     assert_equal [], complete('new')
+  end
+
+  def test_should_list_flags_after_command_provided
+    assert_equal %w(--skip-gemfile --skip-git), complete('new --skip-g').sort
   end
 
   protected
