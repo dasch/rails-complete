@@ -4,12 +4,16 @@ require 'test/unit'
 BIN_DIR = File.join(File.dirname(__FILE__), '..', 'bin')
 
 COMMANDS = %w(server generate destroy plugin benchmarker profiler
-              new console dbconsole application runner)
+              new console dbconsole application runner --help -h --version -v )
 
 class TestExecutable < Test::Unit::TestCase
   def test_should_complete_commands
     assert_equal %w(server), complete("ser")
     assert_equal %w(plugin profiler), complete("p")
+  end
+
+  def test_should_complete_flags
+    assert_equal %w(--help --version), complete('--').sort
   end
 
   def test_should_list_commands_when_no_prefix_is_given
