@@ -13,6 +13,13 @@ line to your `.bashrc`
     complete -C rails-complete -o default rails
 
 
+Contributors
+------------
+
+* Daniel Schierbeck ([dasch](http://github.com/dasch))
+* Joshua Nussbaum ([joshnuss](https://github.com/joshnuss))
+
+
 License
 -------
 
