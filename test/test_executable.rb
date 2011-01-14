@@ -25,6 +25,10 @@ class TestExecutable < Test::Unit::TestCase
   end
 
   def test_should_list_flags_after_command_provided
+    assert_not_equal [], complete('new ').sort
+  end
+
+  def test_should_list_flags_after_command_provided_and_part_of_flag_provided
     assert_equal %w(--skip-gemfile --skip-git), complete('new --skip-g').sort
   end
 

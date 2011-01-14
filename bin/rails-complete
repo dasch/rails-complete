@@ -1,31 +1,33 @@
 #!/usr/bin/env ruby
 
-COMMANDS = {'server' => %w(),
-            'generate' => %w(),
-            'destroy' => %w(),
-            'plugin' => %w(),
-            'benchmarker' => %w(),
-            'profiler' => %w(),
-            'console' => %w(),
-            'dbconsole' => %w(),
-            'application' => %w(),
-            'runner' => %w(),
-            'new' => %w(--skip-prototype -J --skip-test-unit -T --dev -m --template --skip-git -G --builder -b --edge --skip-gemfile --database -d --quiet -q --pretend -p --skip -s --force -f),
-            '--version' => nil,
-            '-v' => nil,
-            '--help' => nil,
-            '-h' => nil}
+COMMANDS = {
+  'server'      => %w(-p --port= -b --binding= -c --config -d --daemon -u --debugger -e --environment= -P --pid= -h --help),
+  'generate'    => %w(-h --help -p --pretend -f --force -s --skip -q --quiet),
+  'destroy'     => %w(-h --help -p --pretend -f --force -s --skip -q --quiet),
+  'plugin'      => %w(install remove -r --root= -s --source= -v --verbose -h --help),
+  'benchmarker' => %w(),
+  'profiler'    => %w(flat graph graph_html),
+  'console'     => %w(-s --sandbox --debugger),
+  'dbconsole'   => %w(-p --include-password --mode -h --header),
+  'application' => %w(),
+  'runner'      => %w(-e --environment= -h --help),
+  'new'         => %w(--skip-prototype -J --skip-test-unit -T --dev -m --template= --skip-git -G --builder= -b --edge --skip-gemfile --database= -d --quiet -q --pretend -p --skip -s --force -f --help -h --version -v),
+  '--version'   => [],
+  '-v'          => [],
+  '--help'      => [],
+  '-h'          => []
+}
 
-def complete(parts)
-  if parts.length > 0 && COMMANDS.key?(parts.first)
-    find_commands(COMMANDS[parts.first], parts.last)
+def complete(parts, ends_with_space)
+  if COMMANDS.key?(parts.first)
+    ends_with_space ? COMMANDS[parts.first] : find_commands(COMMANDS[parts.first], parts.last)
   else
     find_commands(COMMANDS.keys, parts.first || '')
   end
 end
 
 def find_commands(commands, pattern)
-  commands.select {|cmd| cmd[0, pattern.length] == pattern }
+  commands.grep /^#{pattern}/
 end
 
 comp_line = ENV["COMP_LINE"]
@@ -34,4 +36,4 @@ exit -1 if comp_line.nil?
 parts = comp_line.split(' ')
 parts.shift
 
-puts complete(parts)
+puts complete(parts, comp_line.end_with?(' '))
